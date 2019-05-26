@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+    <title>{% if title %}{{title}}{% endif %}</title>
+    {% block style %}{% endblock %}
+  </head>
+  <body>
+    {% block body %}
+    
+    {% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/popper-1.15.0.min.js"></script>
+    <script src="/static/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

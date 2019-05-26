@@ -1,0 +1,51 @@
+{% extends "layouts/base.html" %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">练习错题统计系统</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link active" href="/admin/index">全部练习 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/exercise/create">添加练习</a>
+        </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="搜索练习" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+        </form>
+    </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+            <form action="/admin/exercise/create" method="POST" enctype="multipart/form-data" acceptcharset="UTF-8">
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">练习名称</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="练习名称">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">练习题号</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="questions" name="questions" placeholder="练习题号">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">录入</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
