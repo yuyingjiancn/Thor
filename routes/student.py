@@ -66,7 +66,44 @@ def student_exercise_get(eid):
 
     conn = sqlite3.connect('db.sqlite3')
     c = conn.cursor()
-    c.execute('SELECT id, name, questions FROM exercises WHERE id = ?', (eid, ))
+    c.execute('SELECT answer FROM answers WHERE student_id = ? AND exercise_id = ?', (student_id, eid,))
     answer = c.fetchone()
+    if answer is None:
+        answer = 'null'
+    else:
+        answer = answer[0]
     conn.close()
     return {'student': student, 'exercise': exercise, 'answer': answer}
+
+@post('/student/exercise/post/<sid>/<eid>')
+def student_exercise_post(sid, eid):
+    if not request.get_cookie('id'):
+        return {'success': False, 'message': '请登录'}
+    student_id = int(request.get_cookie('id'))
+    conn = sqlite3.connect('db.sqlite3')
+    c = conn.cursor()
+    c.execute('SELECT id, no, name, class_id FROM students WHERE id = ?', (student_id, ))
+    student = c.fetchone()
+    conn.close()
+    if student is None:
+        return {'success': False, 'message': '请登录'}
+    data = request.POST.get('data')
+
+    conn = sqlite3.connect('db.sqlite3')
+    c = conn.cursor()
+    c.execute('SELECT * FROM answers WHERE student_id = ? AND exercise_id = ?', (sid, eid))
+    answer = c.fetchone()
+    conn.close()
+    if answer is None:
+        conn = sqlite3.connect('db.sqlite3')
+        c = conn.cursor()
+        c.execute('INSERT INTO answers (student_id, exercise_id, answer) VALUES (?, ?, ?)', (sid, eid, data))
+        conn.commit()
+        conn.close()
+    else:
+        conn = sqlite3.connect('db.sqlite3')
+        c = conn.cursor()
+        c.execute('UPDATE answers SET answer = ? WHERE student_id = ? AND exercise_id = ?', (data, sid, eid))
+        conn.commit()
+        conn.close()
+    return {'success': True}

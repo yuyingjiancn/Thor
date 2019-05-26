@@ -10,16 +10,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link active" href="/admin/index">全部练习 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin/exercise/create">添加练习</a>
+            <a class="nav-link active" href="/student/index">全部练习 <span class="sr-only">(current)</span></a>
         </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="搜索练习" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
-        </form>
     </div>
     </nav>
 
@@ -29,7 +22,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" style="width: 30px;">#</th>
                     <th scope="col">练习名称</th>
                     </tr>
                 </thead>
@@ -37,7 +30,7 @@
                     {% for e in exercises %}
                     <tr>
                     <th scope="row">{{e[0]}}</th>
-                    <td>{{e[1]}}</td>
+                    <td><a href="/student/exercise/{{e[0]}}">{{e[1]}}</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

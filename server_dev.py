@@ -4,6 +4,4 @@ from routes import static, admin, student
 
 TEMPLATE_PATH[:] = ['templates']
 
-
-
 run(host='localhost', port=80, reloader=True, debug=True)
