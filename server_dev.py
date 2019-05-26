@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from bottle import run, TEMPLATE_PATH
-from routes import static, admin
+from routes import static, admin, student
 
 TEMPLATE_PATH[:] = ['templates']
 
