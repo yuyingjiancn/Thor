@@ -30,6 +30,13 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-12">
+                {% for s in students_not_post %}
+                    <span class="badge badge-danger">{{s[1]}}-{{s[2]}}</span>             
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-6">
             <table class="table">
                 <thead>
