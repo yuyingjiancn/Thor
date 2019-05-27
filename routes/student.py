@@ -87,7 +87,10 @@ def student_exercise_post(sid, eid):
     conn.close()
     if student is None:
         return {'success': False, 'message': '请登录'}
-    data = request.POST.get('data')
+    '''
+    解决ajax提交中文乱码问题
+    '''
+    data = request.POST.decode().get('data')
 
     conn = sqlite3.connect('db.sqlite3')
     c = conn.cursor()
