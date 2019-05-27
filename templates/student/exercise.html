@@ -43,6 +43,7 @@
                 </fieldset>
                 {% endfor %}
                 <button id="save" type="submit" class="btn btn-primary">保存</button>
+                <button id="setDefaultRight" type="submit" class="btn btn-primary">未选设置为正确</button>
                 </form>
             </div>
         </div>
@@ -64,6 +65,17 @@ $(function() {
         }
     }
     init();
+    //未选的全部设置为正确
+    $("#setDefaultRight").click(function(e) {
+        e.preventDefault();
+        for(var i = 0; i < questions.length; i++) {
+                var $iptTrue = $("input[name='" + questions[i][0] + "'][value='True']");
+                var $iptFalse = $("input[name='" + questions[i][0] + "'][value='False']");
+                if($iptTrue.is(":checked") == false && $iptFalse.is(":checked") == false) {
+                    $iptTrue.prop('checked', true);
+                }
+        }
+    });
     $("#save").click(function(e) {
         e.preventDefault();
         var answerPost = {};
