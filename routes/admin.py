@@ -134,9 +134,7 @@ def admin_exercise_view_get(eid, cid):
     students_all = c.fetchall()
     conn.close()
 
-    print(students_post)
     students_not_post = [student for student in students_all if student[0] not in students_post]
-    print(students_not_post)
 
     da2 = {}
     for k, v in da.items():
