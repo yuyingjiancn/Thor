@@ -100,7 +100,7 @@ def admin_exercise_view_get(eid, cid):
     )
     answers = c.fetchall()
     conn.close()
-    students_post = (a[1] for a in answers)
+    students_post = [a[1] for a in answers]
     answers = [json.loads(a[0]) for a in answers]
     answers_count = len(answers)
     
@@ -120,11 +120,21 @@ def admin_exercise_view_get(eid, cid):
     student_count = c.fetchone()[0]
     conn.close()
 
+    '''
     conn = sqlite3.connect("db.sqlite3")
     c = conn.cursor()
     c.execute(f"SELECT id, no, name FROM students WHERE class_id = ? AND id NOT IN ({str.join(',', (str(i) for i in students_post))})", (cid))
     students_not_post = c.fetchall()
     conn.close()
+    '''
+
+    conn = sqlite3.connect("db.sqlite3")
+    c = conn.cursor()
+    c.execute(f"SELECT id, no, name FROM students WHERE class_id = ?", (cid,))
+    students_all = c.fetchall()
+    conn.close()
+
+    student_not_post = [student for student in students_all if student not in students_post]
 
     da2 = {}
     for k, v in da.items():
