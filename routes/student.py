@@ -35,7 +35,7 @@ def student_index_get():
         redirect('/student/login')
     conn = sqlite3.connect('db.sqlite3')
     c = conn.cursor()
-    c.execute('SELECT id, name FROM exercises')
+    c.execute('SELECT id, name FROM exercises WHERE show = 1')
     exercises = c.fetchall()
     conn.close()
     return {'exercises': exercises}
